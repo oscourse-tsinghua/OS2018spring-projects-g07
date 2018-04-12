@@ -1,3 +1,9 @@
 [submodule "go"]
 	path = go
 	url = https://github.com/maoyuchaxue/go.git
+[submodule "ucore_plus"]
+	path = ucore_plus
+	url = https://github.com/maoyuchaxue/ucore_plus.git
+[submodule "syzkaller"]
+	path = syzkaller
+	url = https://github.com/maoyuchaxue/syzkaller.git
