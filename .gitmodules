@@ -4,9 +4,9 @@
 [submodule "ucore_plus"]
 	path = ucore_plus
 	url = https://github.com/maoyuchaxue/ucore_plus.git
-[submodule "syzkaller"]
-	path = syzkaller/src/github.com/google/syzkaller
-	url = https://github.com/maoyuchaxue/syzkaller.git
 [submodule "kAFL"]
 	path = kAFL
 	url = https://github.com/maoyuchaxue/kAFL.git
+[submodule "syzkaller/src/github.com/google/syzkaller"]
+	path = syzkaller/src/github.com/google/syzkaller
+	url = https://github.com/maoyuchaxue/syzkaller.git
