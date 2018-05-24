@@ -114,3 +114,42 @@ int file_desc_table_dissociate(struct file_desc_table *table, int file_desc)
 }
 ```
 
+4. `sys_linux_sigaction` fails for invalid signal number.
+
+The code below handles `sys_linux_sigaction` syscall:
+
+```
+int do_sigaction(int sign, const struct sigaction *act, struct sigaction *old)
+{
+	assert(get_si(current)->sighand);
+#ifdef __SIGDEBUG
+	kprintf("do_sigaction(): sign = %d, pid = %d\n", sign, current->pid);
+#endif
+	struct sigaction *k = &(get_si(current)->sighand->action[sign - 1]);
+
+	if (k == NULL) {
+		panic("kernel thread call sigaction (i guess)\n");
+	}
+	int ret = 0;
+	struct mm_struct *mm = current->mm;
+	lock_mm(mm);
+	if (old != NULL && !copy_to_user(mm, old, k, sizeof(struct sigaction))) {
+		unlock_mm(mm);
+		ret = -E_INVAL;
+		goto out;
+	}
+
+  ....
+}
+```
+
+Obviously `sign` is unchecked, which results in possible data corruption. e.g.
+
+```
+    char corrupt_data[20];
+    int i = 0;
+    for (; i < 20; i++) {
+        corrupt_data[i] = 0xff;
+    }
+    sigaction(0x41, (struct sigaction *)(&corrupt_data[0]), 0);
+```
