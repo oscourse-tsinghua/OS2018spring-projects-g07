@@ -153,3 +153,13 @@ Obviously `sign` is unchecked, which results in possible data corruption. e.g.
     }
     sigaction(0x41, (struct sigaction *)(&corrupt_data[0]), 0);
 ```
+
+
+5. `sys_linux_mmap` fails when fd is invalid.
+
+the value of fd is unchecked. If an invalid argument is sent in, `vma_mapfile` fails. e.g.
+
+
+```
+sys_linux_mmap(0x7, 0x3, 0x2, 0xf90586166d82955a, 0xffffffffffffffff, 0x48) ;
+```
