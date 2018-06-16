@@ -10,9 +10,6 @@
 [submodule "syzkaller/src/github.com/google/syzkaller"]
 	path = syzkaller/src/github.com/google/syzkaller
 	url = https://github.com/maoyuchaxue/syzkaller.git
-[submodule "SKI"]
-	path = ski
-	url = https://github.com/formyfamily/ski.git
 [submodule "ski"]
 	path = ski
 	url = https://github.com/formyfamily/ski.git
