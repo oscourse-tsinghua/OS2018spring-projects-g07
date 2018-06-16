@@ -13,3 +13,6 @@
 [submodule "SKI"]
 	path = ski
 	url = https://github.com/formyfamily/ski.git
+[submodule "ski"]
+	path = ski
+	url = https://github.com/formyfamily/ski.git
